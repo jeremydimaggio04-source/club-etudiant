@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Ajouter un membre</h2>
+
+<form method="POST" enctype="multipart/form-data" class="form-card">
+    
+    <label>Prénom :</label>
+    <input type="text" name="prenom" required>
+
+    <label>Nom :</label>
+    <input type="text" name="nom" required>
+
+    <label>Email :</label>
+    <input type="email" name="email" required>
+
+    <label>Mot de passe :</label>
+    <input type="password" name="password" required>
+
+    <label>Photo de profil :</label>
+    <input type="file" name="photo" accept="image/*">
+
+    <button type="submit" class="btn-primary">Ajouter</button>
+
+</form>
+
+{% endblock %}

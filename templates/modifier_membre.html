@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Modifier le membre</h2>
+
+<form method="POST" enctype="multipart/form-data" class="form-card">
+
+    <label>Prénom :</label>
+    <input type="text" name="prenom" value="{{ membre.prenom }}" required>
+
+    <label>Nom :</label>
+    <input type="text" name="nom" value="{{ membre.nom }}" required>
+
+    <label>Email :</label>
+    <input type="email" name="email" value="{{ membre.email }}" required>
+
+    <label>Photo actuelle :</label><br>
+    <img src="{{ url_for('static', filename='uploads/' ~ membre.photo) }}"
+         style="width:100px; height:100px; border-radius:50%; object-fit:cover;">
+
+    <br><br>
+
+    <label>Changer la photo :</label>
+    <input type="file" name="photo" accept="image/*">
+
+    <button type="submit" class="btn-primary">Enregistrer</button>
+</form>
+
+{% endblock %}

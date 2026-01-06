@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title if title else "Club Étudiant" }}</title>
+
+    <!-- CSS GLOBAL -->
+    <style>
+        :root {
+            --bg: #f4f4f4;
+            --card-bg: #ffffff;
+            --text: #111;
+            --shadow: 0 3px 10px rgba(0,0,0,0.1);
+            --primary: #2563eb;
+            --success: #16a34a;
+            --warning: #eab308;
+        }
+
+        [data-theme="dark"] {
+            --bg: #1e1e1e;
+            --card-bg: #2a2a2a;
+            --text: #f4f4f4;
+            --shadow: 0 3px 10px rgba(255,255,255,0.05);
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Arial;
+            transition: 0.25s;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: var(--card-bg);
+            box-shadow: var(--shadow);
+            padding: 10px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        nav a {
+            color: var(--text);
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* CARDS GLOBALES */
+        .card {
+            background: var(--card-bg);
+            box-shadow: var(--shadow);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        /* TABLE STYLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        [data-theme="dark"] td {
+            border-bottom: 1px solid #444;
+        }
+
+        tr:hover td {
+            background: rgba(0,0,0,0.05);
+        }
+
+        .btn-warning {
+            background: var(--warning);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn-danger {
+            background: #dc2626;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .search-box {
+            width: 250px;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #bbb;
+            margin-bottom: 15px;
+        }
+    </style>
+
+</head>
+
+<body data-theme="{{ session.get('theme', 'light') }}">
+
+<nav>
+    <div class="nav-left">
+        <strong style="font-size: 20px">🎓 Club Étudiant</strong>
+        <a href="/">Accueil</a>
+        <a href="/membres">Membres</a>
+        <a href="/evenements">Événements</a>
+        <a href="/calendar">Calendrier</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/profil">Mon Profil</a>
+    </div>
+
+    <div class="nav-right">
+        <form action="/toggle_theme" method="POST" style="display: inline;">
+            <button class="btn-warning">🌙 Mode sombre</button>
+        </form>
+        <a href="/logout" class="btn-danger">🔐 Déconnexion</a>
+    </div>
+</nav>
+
+<div style="padding: 40px;">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

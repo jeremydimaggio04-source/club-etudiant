@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1>Modifier mes informations</h1>
+
+<div class="card big-card">
+
+    <form method="POST">
+
+        <label>Prénom :</label>
+        <input class="form-control" type="text" name="prenom" value="{{ user.prenom }}" required>
+
+        <label>Nom :</label>
+        <input class="form-control" type="text" name="nom" value="{{ user.nom }}" required>
+
+        <label>Email :</label>
+        <input class="form-control" type="email" name="email" value="{{ user.email }}" required>
+
+        <button class="btn-primary">💾 Enregistrer</button>
+    </form>
+
+    <br>
+    <a href="/profil" class="btn-secondary">← Retour</a>
+
+</div>
+
+{% endblock %}

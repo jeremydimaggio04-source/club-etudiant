@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1 class="home-title">
+   <h1>Bienvenue dans la gestion du {{ club["nom"] }}</h1>
+<p>{{ club["description"] }}</p>
+
+</h1>
+
+<p class="home-subtitle">
+    Gérez facilement vos membres, événements et activités du club.
+</p>
+
+<br><br>
+
+<style>
+    /* STYLE DES CARTES */
+    .home-card {
+        background: white;
+        padding: 25px;
+        width: 260px;
+        border-radius: 14px;
+        text-align: center;
+        transition: 0.25s;
+        border: 1px solid #ddd;
+    }
+
+    .home-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .home-card img {
+        margin-bottom: 12px;
+    }
+
+    .home-link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /* mode sombre */
+    body.dark .home-card {
+        background: #1c1c1c !important;
+        border: 1px solid #333 !important;
+    }
+
+    body.dark .home-card:hover {
+        box-shadow: 0px 8px 20px rgba(255,255,255,0.08);
+    }
+
+    body.dark .home-title {
+        color: white !important;
+    }
+
+    body.dark .home-subtitle {
+        color: #cfcfcf !important;
+    }
+</style>
+
+
+<div style="display: flex; gap: 35px; justify-content: center; flex-wrap: wrap;">
+
+    <!-- Membres -->
+    <a class="home-link" href="/membres">
+        <div class="home-card">
+            <img src="https://img.icons8.com/color/96/groups.png">
+            <h3>Membres</h3>
+            <p>Voir et gérer les membres</p>
+        </div>
+    </a>
+
+    <!-- Événements -->
+    <a class="home-link" href="/evenements">
+        <div class="home-card">
+            <img src="https://img.icons8.com/color/96/calendar.png">
+            <h3>Événements</h3>
+            <p>Créer et suivre les activités</p>
+        </div>
+    </a>
+
+    <!-- Dashboard -->
+    <a class="home-link" href="/dashboard">
+        <div class="home-card">
+            <img src="https://img.icons8.com/color/96/combo-chart.png">
+            <h3>Dashboard</h3>
+            <p>Statistiques et aperçu global</p>
+        </div>
+    </a>
+
+</div>
+
+{% endblock %}

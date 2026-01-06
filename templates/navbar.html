@@ -1,0 +1,39 @@
+<nav style="
+    background: var(--nav-bg);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--card-border);
+">
+    <!-- Logo -->
+    <div style="font-size: 20px; font-weight: 700;">
+        🎓 Club Étudiant
+<div style="display:flex; gap:20px;">
+    <a href="/" style="color: var(--text-color); text-decoration:none;">Accueil</a>
+    <a href="/membres" style="color: var(--text-color); text-decoration:none;">Membres</a>
+    <a href="/evenements" style="color: var(--text-color); text-decoration:none;">Événements</a>
+    <a href="/calendar" style="color: var(--text-color); text-decoration:none;">Calendrier</a>
+    <a href="/dashboard" style="color: var(--text-color); text-decoration:none;">Dashboard</a>
+    <a href="/profil" style="color: var(--text-color); text-decoration:none;">Mon Profil</a>
+
+    {% if session.role == "admin" %}
+        <a href="/club/edit" style="color: var(--text-color); text-decoration:none;">Modifier le club</a>
+    {% endif %}
+</div>
+
+
+    <!-- Mode sombre + logout -->
+    <div style="display:flex; gap:15px; align-items:center;">
+        <form method="POST" action="/toggle_theme">
+            <button type="submit"
+                    style="padding:8px 14px; border-radius:6px; background:#facc15; font-weight:600;">
+                🌙 Mode sombre
+            </button>
+        </form>
+
+        <a href="/logout" style="padding:8px 14px; background:#dc2626; color:white; border-radius:6px; font-weight:600;">
+            🔒 Déconnexion
+        </a>
+    </div>
+</nav>

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container" style="max-width: 450px; margin-top: 60px;">
+
+    <div class="card shadow-sm p-4">
+
+        <h3 class="text-center mb-4">Créer un compte</h3>
+
+        <form method="POST">
+
+            <div class="mb-3">
+                <label class="form-label">Prénom :</label>
+                <input type="text" name="prenom" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Nom :</label>
+                <input type="text" name="nom" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email :</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Mot de passe :</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+
+            <button class="btn btn-primary w-100">
+                Créer mon compte
+            </button>
+        </form>
+
+        <p class="text-center mt-3">
+            Déjà inscrit ? <a href="/login">Connexion</a>
+        </p>
+
+    </div>
+</div>
+{% endblock %}

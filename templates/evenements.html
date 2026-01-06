@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Liste des événements</h2>
+
+    <a href="/evenements/ajouter" class="btn btn-primary shadow-sm">
+        ➕ Ajouter un événement
+    </a>
+</div>
+
+{% if events %}
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+    {% for e in events %}
+    <div class="col">
+        <div class="card shadow-sm border-0 h-100">
+
+            <div class="card-body">
+
+                <h4 class="card-title fw-bold">{{ e.titre }}</h4>
+
+                <p class="text-muted mb-1">
+                    📅 <strong>Date :</strong> {{ e.date }}
+                </p>
+
+                <p class="text-muted mb-3">
+                    📍 <strong>Lieu :</strong> {{ e.lieu }}
+                </p>
+
+                <div class="d-flex gap-2">
+                    <a href="/evenements/{{ e.id }}" class="btn btn-outline-primary btn-sm">
+                        🔎 Détails
+                    </a>
+
+                    <a href="/evenements/supprimer/{{ e.id }}"
+                       class="btn btn-outline-danger btn-sm"
+                       onclick="return confirm('Supprimer cet événement ?')">
+                       🗑 Supprimer
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% else %}
+<div class="alert alert-info shadow-sm">
+    Aucun événement pour le moment.
+</div>
+{% endif %}
+
+{% endblock %}

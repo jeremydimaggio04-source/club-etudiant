@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container" style="max-width: 800px; margin-top: 40px;">
+
+    <div style="
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    ">
+        
+        <h2 style="margin-bottom: 25px; font-size: 28px; font-weight: 600;">
+            Mon Profil
+        </h2>
+
+        <div style="line-height: 2; font-size: 17px;">
+            <p><strong>Prénom :</strong> {{ user.prenom }}</p>
+            <p><strong>Nom :</strong> {{ user.nom }}</p>
+            <p><strong>Email :</strong> {{ user.email }}</p>
+            <p><strong>Rôle :</strong> {{ user.role }}</p>
+            <p><strong>Date d'inscription :</strong> {{ user.date_inscription }}</p>
+        </div>
+
+        <div style="margin-top: 25px;">
+            <a href="/membres/modifier/{{ user.id }}" 
+               style="padding: 10px 18px; background: #1F4AFF; color: white;
+                      border-radius: 8px; text-decoration: none; margin-right: 10px;">
+                Modifier mes informations
+            </a>
+
+            <a href="/profil/password" 
+               style="padding: 10px 18px; background: #FFB800; color: black;
+                      border-radius: 8px; text-decoration: none;">
+                Changer mon mot de passe
+            </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

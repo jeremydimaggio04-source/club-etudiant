@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1>Liste des membres</h1>
+
+<input type="text" class="search-box" placeholder="🔍 Rechercher un membre" id="searchInput">
+
+<div class="card">
+
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Date d'inscription</th>
+                <th style="text-align:center;">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody id="tableBody">
+        {% for m in membres %}
+            <tr>
+                <td>{{ m.prenom }}</td>
+                <td>{{ m.nom }}</td>
+                <td>{{ m.email }}</td>
+                <td>{{ m.date_inscription }}</td>
+
+                <td style="text-align:center;">
+
+                    <a href="/membres/modifier/{{ m.id }}" class="btn-edit">
+                        ✏ Modifier
+                    </a>
+
+                    <a href="/membres/supprimer/{{ m.id }}" class="btn-delete">
+                        🗑 Supprimer
+                    </a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+</div>
+
+<style>
+/* TABLEAU MODERNE */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+.styled-table thead {
+    background: #2563eb;
+    color: white;
+}
+
+[data-theme="dark"] .styled-table thead {
+    background: #1d4ed8;
+}
+
+.styled-table th {
+    padding: 14px;
+    text-align: left;
+}
+
+.styled-table td {
+    padding: 14px;
+    border-bottom: 1px solid #ddd;
+}
+
+[data-theme="dark"] .styled-table td {
+    border-bottom: 1px solid #444;
+}
+
+/* LIGNES ALTERNÉES */
+.styled-table tbody tr:nth-child(even) {
+    background: rgba(0,0,0,0.03);
+}
+
+[data-theme="dark"] .styled-table tbody tr:nth-child(even) {
+    background: rgba(255,255,255,0.05);
+}
+
+/* HOVER */
+.styled-table tbody tr:hover {
+    background: rgba(0,0,0,0.07);
+}
+
+[data-theme="dark"] .styled-table tbody tr:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+/* BOUTONS ACTIONS */
+.btn-edit {
+    background: #eab308;
+    color: black;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 6px;
+}
+
+.btn-edit:hover {
+    background: #ca8a04;
+    color: white;
+}
+
+.btn-delete {
+    background: #dc2626;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-delete:hover {
+    background: #b91c1c;
+}
+
+/* SEARCH BOX */
+.search-box {
+    padding: 10px;
+    width: 240px;
+    border-radius: 8px;
+    border: 1px solid #bbb;
+    margin: 10px 0 20px 0;
+}
+</style>
+
+{% endblock %}

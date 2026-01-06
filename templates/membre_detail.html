@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="card shadow p-4" style="max-width:800px;margin:auto;">
+
+    <div class="text-center mb-4">
+        <div style="
+            width:120px;height:120px;
+            background:#1a73e8;
+            color:white;
+            font-size:38px;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            margin:auto;">
+            {{ membre.prenom[0] }}{{ membre.nom[0] }}
+        </div>
+
+        <h2 class="mt-3">{{ membre.prenom }} {{ membre.nom }}</h2>
+        <span class="badge bg-primary" style="font-size:14px;">{{ membre.role }}</span>
+    </div>
+
+    <hr>
+
+    <p><strong>Email :</strong> {{ membre.email }}</p>
+    <p><strong>Date d'inscription :</strong> {{ membre.date_inscription }}</p>
+
+    <hr>
+
+    <h4 class="mt-3">Participations</h4>
+
+    {% if participations|length > 0 %}
+        <ul class="list-group mt-2">
+            {% for p in participations %}
+            <li class="list-group-item d-flex justify-content-between">
+                {{ p.titre }}
+                <span>{{ p.date }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted">Aucune participation pour le moment.</p>
+    {% endif %}
+
+    <div class="mt-4 d-flex gap-3">
+        <a href="/membres/modifier/{{ membre.id }}" class="btn btn-warning">Modifier</a>
+        <a href="/membres/supprimer/{{ membre.id }}" class="btn btn-danger">Supprimer</a>
+        <a href="/membres" class="btn btn-secondary">Retour</a>
+    </div>
+
+</div>
+
+{% endblock %}

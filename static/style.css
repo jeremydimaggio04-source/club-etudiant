@@ -1,0 +1,159 @@
+/* =====================
+   STYLE GLOBAL
+===================== */
+body {
+    background: #f2f4f8;
+    font-family: 'Inter', sans-serif;
+}
+
+/* TITRES */
+.page-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1d1d1d;
+}
+
+/* =====================
+   NAVBAR / TOPBAR
+===================== */
+.topbar {
+    background: #0a2da6;
+    padding: 12px 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.topbar .navbar-brand {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.nav-link {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.nav-link.active {
+    font-weight: 700;
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+
+/* =====================
+   BOUTONS
+===================== */
+
+.btn-primary {
+    background: #2748d9;
+    border: none;
+}
+.btn-primary:hover {
+    background: #1c32a4;
+}
+
+.btn-success {
+    background: #1ba84e;
+    border: none;
+}
+.btn-success:hover {
+    background: #15853e;
+}
+
+.btn-warning {
+    background: #ffb200;
+    border: none;
+    color: black;
+}
+
+.btn-danger {
+    background: #d62828;
+    border: none;
+}
+
+/* =====================
+   CARDS GLOBALES
+===================== */
+
+.card {
+    border-radius: 14px;
+    border: none;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.07);
+}
+
+/* =====================
+   TABLEAUX
+===================== */
+
+.table thead {
+    background: #e6e9ff;
+}
+.table thead th {
+    font-weight: 600;
+}
+
+/* =====================
+   CALENDRIER (FullCalendar)
+===================== */
+
+.fc .fc-toolbar-title {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.fc .fc-daygrid-day {
+    background: white;
+}
+
+.fc-event {
+    border: none;
+    padding: 3px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Couleurs catégories */
+.fc-event.autre {
+    background: #007bff !important;
+}
+.fc-event.sport {
+    background: #1ba84e !important;
+}
+.fc-event.reunion {
+    background: #ffb200 !important;
+}
+.fc-event.soiree {
+    background: #ff3e3e !important;
+}
+
+/* =====================
+   PROFIL
+===================== */
+.profile-box {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+}
+
+/* =====================
+   FORMS
+===================== */
+input, select, textarea {
+    border-radius: 8px !important;
+    padding: 10px !important;
+}
+
+label {
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+/* =====================
+   CALENDAR CONTAINER
+===================== */
+.calendar-container {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
