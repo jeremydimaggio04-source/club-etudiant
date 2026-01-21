@@ -1,29 +1,79 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
 {% block content %}
 
-<h2>Modifier le membre</h2>
+<h2 style="text-align:center; font-size:28px; margin-bottom:30px;">
+    Modifier le membre
+</h2>
 
-<form method="POST" enctype="multipart/form-data" class="form-card">
+<div style="
+    max-width: 650px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+">
 
-    <label>Prénom :</label>
-    <input type="text" name="prenom" value="{{ membre.prenom }}" required>
+    <!-- FORMULAIRE -->
+    <form method="POST" enctype="multipart/form-data" style="display:flex; flex-direction:column; gap:20px;">
 
-    <label>Nom :</label>
-    <input type="text" name="nom" value="{{ membre.nom }}" required>
+        <!-- Prénom & Nom -->
+        <div style="display:flex; gap:20px;">
+            
+            <div style="flex:1;">
+                <label style="font-weight:600;">Prénom :</label>
+                <input type="text" name="prenom" value="{{ membre.prenom }}"
+                       style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc;">
+            </div>
 
-    <label>Email :</label>
-    <input type="email" name="email" value="{{ membre.email }}" required>
+            <div style="flex:1;">
+                <label style="font-weight:600;">Nom :</label>
+                <input type="text" name="nom" value="{{ membre.nom }}"
+                       style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc;">
+            </div>
 
-    <label>Photo actuelle :</label><br>
-    <img src="{{ url_for('static', filename='uploads/' ~ membre.photo) }}"
-         style="width:100px; height:100px; border-radius:50%; object-fit:cover;">
+        </div>
 
-    <br><br>
+        <!-- Email -->
+        <div>
+            <label style="font-weight:600;">Email :</label>
+            <input type="email" name="email" value="{{ membre.email }}"
+                   style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc;">
+        </div>
 
-    <label>Changer la photo :</label>
-    <input type="file" name="photo" accept="image/*">
+        <!-- Photo actuelle -->
+        <div style="text-align:center; margin-top:15px;">
+            <label style="font-weight:600;">Photo actuelle :</label><br><br>
+            
+            <img src="/static/uploads/{{ membre.photo }}" 
+                 alt="Photo du membre"
+                 style="width:150px; height:150px; object-fit:cover; border-radius:12px; border:2px solid #ddd;">
+        </div>
 
-    <button type="submit" class="btn-primary">Enregistrer</button>
-</form>
+        <!-- Changer photo -->
+        <div>
+            <label style="font-weight:600;">Changer la photo :</label><br>
+            <input type="file" name="photo">
+        </div>
+
+        <!-- Bouton -->
+        <button type="submit" style="
+            margin-top:10px;
+            padding:12px;
+            width:100%;
+            background:#2563eb;
+            color:white;
+            border:none;
+            border-radius:8px;
+            font-size:16px;
+            font-weight:600;
+            cursor:pointer;
+        ">
+            Enregistrer
+        </button>
+
+    </form>
+
+</div>
 
 {% endblock %}

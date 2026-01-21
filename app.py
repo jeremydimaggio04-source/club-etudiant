@@ -238,6 +238,11 @@ def change_password():
 @app.route("/membres")
 @login_required
 def membres():
+        # 🔒 Accès réservé aux admins
+    if session.get("role") != "admin":
+        flash_message("Accès réservé aux administrateurs.", "error")
+        return redirect("/")
+
     conn = get_db_connection()
     membres = conn.execute("SELECT * FROM membres WHERE active = 1").fetchall()
     conn.close()
@@ -246,6 +251,11 @@ def membres():
 @app.route("/membres/ajouter", methods=["GET", "POST"])
 @login_required
 def ajouter_membre():
+        # 🔒 Seuls les admins peuvent ajouter un membre
+    if session.get("role") != "admin":
+        flash_message("Accès réservé aux administrateurs.", "error")
+        return redirect("/membres")
+
     if request.method == "POST":
         nom = request.form["nom"]
         prenom = request.form["prenom"]
@@ -279,6 +289,11 @@ def ajouter_membre():
 @login_required
 def modifier_membre(id):
     conn = get_db_connection()
+        # 🔒 Empêcher les non-admin de modifier un autre membre
+    if session.get("role") != "admin" and session.get("user_id") != id:
+        flash_message("Vous ne pouvez modifier que votre propre compte.", "error")
+        return redirect("/membres")
+
 
     if request.method == "POST":
         conn.execute("""
@@ -307,6 +322,11 @@ def modifier_membre(id):
 @app.route("/membres/supprimer/<int:id>")
 @login_required
 def supprimer_membre(id):
+        # 🔒 Seuls les admins peuvent supprimer un membre
+    if session.get("role") != "admin":
+        flash_message("Accès réservé aux administrateurs.", "error")
+        return redirect("/membres")
+
     conn = get_db_connection()
     conn.execute("UPDATE membres SET active = 0 WHERE id = ?", (id,))
     conn.commit()
@@ -327,8 +347,14 @@ def evenements():
     return render_template("evenements.html", events=events)
 
 @app.route("/evenements/ajouter", methods=["GET", "POST"])
+
 @login_required
 def ajouter_evenement():
+        # 🔒 Seuls les admins peuvent créer un événement
+    if session.get("role") != "admin":
+        flash_message("Accès réservé aux administrateurs.", "error")
+        return redirect("/evenements")
+
     if request.method == "POST":
         titre = request.form["titre"]
         date = request.form["date"]
@@ -368,6 +394,11 @@ def details_evenement(id):
 @app.route("/evenements/<int:id>/inscrire", methods=["GET", "POST"])
 @login_required
 def inscrire_membre_evenement(id):
+        # 🔒 Seuls les admins peuvent inscrire des membres
+    if session.get("role") != "admin":
+        flash_message("Accès réservé aux administrateurs.", "error")
+        return redirect(f"/evenements/{id}")
+
     conn = get_db_connection()
     event = conn.execute("SELECT * FROM evenements WHERE id = ?", (id,)).fetchone()
     membres = conn.execute("SELECT * FROM membres WHERE active = 1").fetchall()
@@ -390,6 +421,11 @@ def inscrire_membre_evenement(id):
 @app.route("/evenements/supprimer/<int:id>")
 @login_required
 def supprimer_evenement(id):
+        # 🔒 Seuls les admins peuvent supprimer un événement
+    if session.get("role") != "admin":
+        flash_message("Accès réservé aux administrateurs.", "error")
+        return redirect("/evenements")
+
     conn = get_db_connection()
     conn.execute("DELETE FROM participations WHERE id_evenement = ?", (id,))
     conn.execute("DELETE FROM evenements WHERE id = ?", (id,))

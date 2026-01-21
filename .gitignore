@@ -1,0 +1,8 @@
+__pycache__/
+*.db
+*.sqlite
+instance/
+.env
+uploads/
+club.db
+*.db

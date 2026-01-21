@@ -1,28 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>{{ title }}</title>
+    <title>{{ title or "Club Étudiant" }}</title>
     <link rel="stylesheet" href="/static/style.css">
+
+    <!-- Variables CSS thème clair / sombre -->
+    <style>
+        :root {
+            --bg: #f4f4f4;
+            --text: #222;
+            --nav-bg: #ffffff;
+            --card-bg: #ffffff;
+            --border: #ddd;
+        }
+
+        body.dark {
+            --bg: #1e1e1e;
+            --text: #f5f5f5;
+            --nav-bg: #2a2a2a;
+            --card-bg: #2f2f2f;
+            --border: #444;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .content {
+            padding: 30px;
+        }
+    </style>
 </head>
 
-<body>
+<body class="{% if session.theme == 'dark' %}dark{% endif %}">
 
-<!-- HEADER NAVIGATION -->
-<div class="navbar">
-    <a href="/">Accueil</a>
-    <a href="/membres">Membres</a>
-    <a href="/evenements">Événements</a>
+    <!-- NAVBAR GLOBALE -->
+    {% include "navbar.html" %}
 
-    {% if session.user_id %}
-        <a href="/logout" class="logout">Déconnexion</a>
-    {% endif %}
-</div>
-
-<!-- CONTENU DES PAGES -->
-<div class="content">
-    {% block content %}{% endblock %}
-</div>
+    <!-- PAGE CONTENT -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
 
 </body>
 </html>
